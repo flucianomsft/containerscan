@@ -1,0 +1,25 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+ 
+  build:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_NAME: my-image-name:$(date +%s)
+
+    steps:
+    - uses: actions/checkout@v2
+        
+    - name: Build the Docker image
+      run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
+
+    - name: Container image scan
+      uses: Azure/container-scan@v0.1
+      image-name: ${{ env.IMAGE_NAME }}
+      severity-threshold: HIGH
