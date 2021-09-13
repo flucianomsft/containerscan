@@ -11,7 +11,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_NAME: my-image-name:$(date +%s)
+      IMAGE_NAME: my-image-name
 
     steps:
     - uses: actions/checkout@v2
