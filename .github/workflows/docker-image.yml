@@ -18,6 +18,11 @@ jobs:
         
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag ${{ env.IMAGE_NAME }}
+      
+    - name: Anchore Scan
+      uses: anchore/scan-action@v3.0.0
+      with:
+        image: ${{ env.IMAGE_NAME }} 
 
     - name: Container image scan
       uses: Azure/container-scan@v0.1
