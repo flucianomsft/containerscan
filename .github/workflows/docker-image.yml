@@ -21,5 +21,6 @@ jobs:
 
     - name: Container image scan
       uses: Azure/container-scan@v0.1
-      image-name: ${{ env.IMAGE_NAME }}
-      severity-threshold: HIGH
+      with:
+        image-name: ${{ env.IMAGE_NAME }}
+        severity-threshold: HIGH
